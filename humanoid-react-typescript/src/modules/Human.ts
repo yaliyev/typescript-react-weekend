@@ -1,11 +1,11 @@
 interface IHuman{
-    name:string,
-    surname:string,
-    age:number,
-    getInfo():void
+    name:string;
+    surname:string;
+    age:number;
+    getInfo():void;
 }
 
-abstract class Human implements IHuman{
+export default abstract class Human implements IHuman{
 
     public _age:number;
 
