@@ -18,6 +18,8 @@ const TodoListPage = () => {
        
     const [list,setList] = useState(todoList.list);
 
+    const [editMode, setEditMode] = useState(false);
+
     const mainTodoInputRef = useRef<HTMLInputElement>(null);
 
     
@@ -59,7 +61,7 @@ const TodoListPage = () => {
 
 
                       {list.map((todo:Todo,index:number)=>{
-                         return <TodoItem key={index} todo={todo} />
+                         return <TodoItem editMode={editMode} setEditMode={setEditMode} key={index} todo={todo} todoIndex={index} />
                       })};
                       
                       
