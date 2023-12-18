@@ -2,8 +2,6 @@ import Todo from './Todo';
 
 interface ITodoList{
     list: Todo[],
-    load:() => void,
-    upload:() => void,
     add:(newTodo: Todo)=>void,
     remove:(todoId:string)=>void,
     reset:()=>void
@@ -30,26 +28,6 @@ export default class TodoList implements ITodoList{
         return this.instance;
     }
 
-
-
-    load():void {
-       const storageString : string | null = localStorage.getItem('todos-typescript');
-       
-       if( typeof storageString == 'string'){
-                const list = JSON.parse(storageString);
-
-                console.log(list);
-                console.log(typeof list);
-                
-                
-       }else{
-        return;
-       }
-    }
-
-    upload():void{
-
-    }
 
     add(todo:Todo):void{
         this._list.push(todo);
