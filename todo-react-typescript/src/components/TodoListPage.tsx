@@ -60,7 +60,7 @@ const TodoListPage = () => {
 
 
                       {list.map((todo:Todo,index:number)=>{
-                         return <TodoItem  list={list} setList={setList} key={index} todo={todo} todoIndex={index} />
+                         return <TodoItem todoListInstance = {todoList}  list={list} setList={setList} key={index} todo={todo} todoIndex={index} />
                       })};
                       
                       

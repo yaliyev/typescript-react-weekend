@@ -20,6 +20,9 @@ export default class TodoList implements ITodoList{
     get list(){
         return this._list;
     }
+    set list(list:Todo[]){
+        this._list = list;
+    }
 
     static createInstance():TodoList{
         if( typeof this.instance == 'undefined'){
