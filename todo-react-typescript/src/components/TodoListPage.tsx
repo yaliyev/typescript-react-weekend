@@ -1,21 +1,41 @@
 import { Box, Button, Container, Flex, Heading, Input, Stack } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import TodoItem from './TodoItem'
 import Todo from '../models/Todo'
 import TodoList from '../models/TodoList'
+import { v4 as uuidv4 } from 'uuid';
+
+
+
 
 const TodoListPage = () => {
 
+    useEffect(()=>{
+        TodoList.createInstance();
+    },[])
 
     const todoList:TodoList = TodoList.createInstance();
-    const [list,setList] = useState(todoList);
-
-    useEffect(()=>{
        
-     setList(todoList);
+    const [list,setList] = useState(todoList.list);
 
-    },[])
-    //  const todo1:Todo = new Todo("1","value1",false);
+    const mainTodoInputRef = useRef<HTMLInputElement>(null);
+
+    
+    
+
+    function addTodo(){
+        
+    
+        const todo:Todo = new Todo(uuidv4(),mainTodoInputRef.current?.value,false);
+
+        todoList.add(todo);
+         setList([...todoList.list]);
+
+         (mainTodoInputRef.current!).value = '';
+        
+         
+        
+    }
 
     return (
         <Container marginTop='200px' maxW='xl' centerContent>
@@ -27,8 +47,8 @@ const TodoListPage = () => {
 
                 <Stack marginTop={"20px"} spacing={3}>
                     <Flex>
-                    <Input borderRadius={'4px'} placeholder='Type something..' size='sm' />
-                    <Button marginLeft={"10px"} padding={'15px'} colorScheme='teal' size='sm'>
+                    <Input ref={mainTodoInputRef} borderRadius={'4px'} placeholder='Type something..' size='sm' />
+                    <Button onClick={()=>{addTodo()}} marginLeft={"10px"} padding={'15px'} colorScheme='teal' size='sm'>
                         Add
                     </Button>
 
@@ -38,8 +58,8 @@ const TodoListPage = () => {
                 <Stack marginTop={"20px"}>
 
 
-                      {list.list.map((todo:Todo)=>{
-                         return <TodoItem todo={todo} />
+                      {list.map((todo:Todo,index:number)=>{
+                         return <TodoItem key={index} todo={todo} />
                       })};
                       
                       

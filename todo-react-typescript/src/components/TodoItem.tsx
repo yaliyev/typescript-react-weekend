@@ -5,7 +5,7 @@ import Todo from '../models/Todo'
 const TodoItem = (props:{todo:Todo}) => {
     
   return (
-    <Flex>
+    <Flex marginBlock={"10px"}>
         <Text  paddingBlock={"5px"} fontSize='sm'>{props.todo.value}</Text>
         <Button marginLeft={"10px"} padding={'15px'} colorScheme='teal' size='sm'>
                         Edit
