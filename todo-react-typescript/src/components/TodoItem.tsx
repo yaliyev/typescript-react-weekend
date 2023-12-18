@@ -28,7 +28,12 @@ const TodoItem = (props: {todoListInstance:TodoList,todo: Todo,list:Todo[],setLi
     props.setList(todos);
   }
 
-  
+  function editTodo(){
+    const todos = [...props.list];
+    todos[props.todoIndex].value = (editableItemInputRef.current!).value; 
+    props.todoListInstance.list = todos;
+    props.setList(todos);
+  }
 
   
 
@@ -50,7 +55,7 @@ const TodoItem = (props: {todoListInstance:TodoList,todo: Todo,list:Todo[],setLi
         </> :
         <>
           <Input defaultValue={props.todo.value} ref={editableItemInputRef}  borderRadius={'4px'} placeholder='Type something..' size='sm' />
-          <Button onClick={()=>{}}   marginLeft={"10px"} padding={'15px'} colorScheme='teal' size='sm'>
+          <Button onClick={()=>{editTodo();changeCurrentlyEditMode(false);}}   marginLeft={"10px"} padding={'15px'} colorScheme='teal' size='sm'>
            Save
           </Button>
           <Button onClick={()=>{changeCurrentlyEditMode(false)}}  marginLeft={"10px"} padding={'15px'} colorScheme='teal' size='sm'>
