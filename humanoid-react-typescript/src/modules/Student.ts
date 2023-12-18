@@ -7,7 +7,7 @@ interface IStudent<T> {
     hasPassed: () => boolean;
 }
 
-class Student extends Human implements IStudent<string[]>{
+export default class Student extends Human implements IStudent<string[]>{
 
     groupName: string;
     hobbies: string[];

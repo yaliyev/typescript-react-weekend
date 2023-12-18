@@ -1,9 +1,10 @@
 import Human from "./Human";
 
-enum Position{
+export enum Position{
  CEO,
  Recruiter,
- Developer
+ Developer,
+ None
 }
 
 interface IEmployee<T>{
@@ -12,7 +13,7 @@ interface IEmployee<T>{
     position: Position
 }
 
-class Employee extends Human implements IEmployee<string[]> {
+export default class Employee extends Human implements IEmployee<string[]> {
 
     salary:number;
     skills:string[];
