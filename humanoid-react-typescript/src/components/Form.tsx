@@ -9,7 +9,7 @@ import Human from '../modules/Human'
 const Form = () => {
 
     const [option, setOption] = useState('human');
-    const [people,setPeople] = useState<Human[]>([]);
+    const [people, setPeople] = useState<Human[]>([]);
 
     const nameRef = useRef<HTMLInputElement>(null);
     const surnameRef = useRef<HTMLInputElement>(null);
@@ -26,27 +26,27 @@ const Form = () => {
     const optionRef = useRef<HTMLSelectElement>(null);
 
     function identifyHumanAndAddIt() {
-        
 
-        
+
+
         if (option == 'student') {
-           
+
             let student: Student = new Student((nameRef.current!).value, (surnameRef.current!).value,
-                Number((ageRef.current!).value), (groupNameRef.current!).value, (hobbiesRef.current!).value.split(","),Number((gpaRef.current!).value));
+                Number((ageRef.current!).value), (groupNameRef.current!).value, (hobbiesRef.current!).value.split(","), Number((gpaRef.current!).value));
 
-             
-                const peopleData = [...people];
 
-                peopleData.push(student);
+            const peopleData = [...people];
 
-                setPeople(peopleData);
-                
+            peopleData.push(student);
 
-             (groupNameRef.current!).value = '';
-             (gpaRef.current!).value = '';
-             (hobbiesRef.current!).value = '';
-                
-        }else if (option == 'employee') {
+            setPeople(peopleData);
+
+
+            (groupNameRef.current!).value = '';
+            (gpaRef.current!).value = '';
+            (hobbiesRef.current!).value = '';
+
+        } else if (option == 'employee') {
 
             let positionEnumValue: Position = Position.None;
 
@@ -63,20 +63,20 @@ const Form = () => {
             }
 
             let employee: Employee = new Employee((nameRef.current!).value, (surnameRef.current!).value,
-                Number((ageRef.current!).value), Number((salaryRef.current!).value), (skillsRef.current!).value.split(","),positionEnumValue);
+                Number((ageRef.current!).value), Number((salaryRef.current!).value), (skillsRef.current!).value.split(","), positionEnumValue);
 
-                const peopleData = [...people];
+            const peopleData = [...people];
 
-                peopleData.push(employee);
+            peopleData.push(employee);
 
-                setPeople(peopleData);
+            setPeople(peopleData);
 
-             (salaryRef.current!).value = '';
-             (skillsRef.current!).value = '';
-             (positionRef.current!).value = 'position';
-                
-        }else{
-          alert("You cannot add something,Human class is abstract.Choose Human Type in Select Element");  
+            (salaryRef.current!).value = '';
+            (skillsRef.current!).value = '';
+            (positionRef.current!).value = 'position';
+
+        } else {
+            alert("You cannot add something,Human class is abstract.Choose Human Type in Select Element");
         }
 
         (nameRef.current!).value = '';
@@ -85,6 +85,30 @@ const Form = () => {
 
         (optionRef.current!).value = 'human';
         setOption('human');
+    }
+
+    function clearFormData() {
+        (nameRef.current!).value = '';
+        (surnameRef.current!).value = '';
+        (ageRef.current!).value = '';
+
+        (optionRef.current!).value = 'human';
+        setOption('human');
+
+        if(groupNameRef.current != null && gpaRef.current !=null &&  hobbiesRef.current != null ){
+            (groupNameRef.current!).value = '';
+            (gpaRef.current!).value = '';
+            (hobbiesRef.current!).value = '';
+        }
+        
+        if(salaryRef.current != null && skillsRef.current != null && positionRef.current != null){
+            (salaryRef.current!).value = '';
+            (skillsRef.current!).value = '';
+            (positionRef.current!).value = 'position';
+        }
+        
+
+
     }
 
     return (
@@ -100,8 +124,8 @@ const Form = () => {
                     <option value='student'>student</option>
                     <option value='employee'>employee</option>
                 </Select>
-                <Button onClick={() => { identifyHumanAndAddIt() }} paddingInline={"10px"} colorScheme='blue'>Add</Button>
-                <Button paddingInline={"22px"} colorScheme='blue'>Cancel</Button>
+                <Button onClick={() => { identifyHumanAndAddIt(); }} paddingInline={"10px"} colorScheme='blue'>Add</Button>
+                <Button onClick={()=>{clearFormData();}} paddingInline={"22px"} colorScheme='blue'>Cancel</Button>
             </Flex>
 
             {option == "student" ? <Flex marginTop={"10px"} columnGap={"10px"}>
