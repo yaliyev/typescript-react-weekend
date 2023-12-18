@@ -13,7 +13,7 @@ const Form = () => {
                 <Input placeholder='Type name:' />
                 <Input placeholder='Type surname:' />
                 <Input placeholder='Type age:' />
-                <Select defaultValue={"human"} color='black'>
+                <Select onChange={(e)=>{ setOption(e.target.value) }} defaultValue={"human"} color='black'>
                     
                     <option disabled>human</option>
                     <option value='student'>student</option>
@@ -23,21 +23,26 @@ const Form = () => {
                 <Button paddingInline={"22px"} colorScheme='blue'>Cancel</Button>
             </Flex>
 
-            <Flex marginTop={"10px"} columnGap={"10px"} color='white'>
+{option == "student" ? <Flex marginTop={"10px"} columnGap={"10px"} color='white'>
                 <Input placeholder='Type groupName:' />
                 <Input placeholder='Type GPA:' />
                 <Input placeholder='Type hobbies:' />
                 
-            </Flex>
+            </Flex> : <></> }
+            
 
-            <Flex marginTop={"10px"} columnGap={"10px"} color='white'>
+{option == "employee" ? <Flex marginTop={"10px"} columnGap={"10px"} color='white'>
                 <Input placeholder='Type salary:' />
                 <Input placeholder='Type skills:' />
-                <Select  placeholder='position' color='black'>
-                    
+                <Select  defaultValue='position' color='black'>
+                <option disabled>position</option>
+                    <option value='ceo'>CEO</option>
+                    <option value='recruiter'>Recruiter</option>
+                    <option value='developer'>Developer</option>
                 </Select>
                 
-            </Flex>
+            </Flex> : <></>}
+            
             
 
         </Container>
