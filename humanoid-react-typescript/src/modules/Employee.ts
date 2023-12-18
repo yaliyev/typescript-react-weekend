@@ -1,10 +1,10 @@
 import Human from "./Human";
 
 export enum Position{
- CEO,
- Recruiter,
- Developer,
- None
+ CEO = 'CEO',
+ Recruiter = 'Recruiter',
+ Developer = 'Developer',
+ None = 'None'
 }
 
 interface IEmployee<T>{

@@ -1,14 +1,15 @@
 import { Box, Center, Container, Flex, Input, Select, Text } from '@chakra-ui/react'
 import React, { useRef, useState } from 'react'
 import { Button } from '@chakra-ui/react'
-import ListItem from './ListItemComponent'
-import ListItemComponent from './ListItemComponent'
+import ListComponent from './ListComponent'
 import Employee, { Position } from '../modules/Employee'
 import Student from '../modules/Student'
+import Human from '../modules/Human'
 
 const Form = () => {
 
-    const [option, setOption] = useState('human')
+    const [option, setOption] = useState('human');
+    const [people,setPeople] = useState<Human[]>([]);
 
     const nameRef = useRef<HTMLInputElement>(null);
     const surnameRef = useRef<HTMLInputElement>(null);
@@ -33,7 +34,13 @@ const Form = () => {
             let student: Student = new Student((nameRef.current!).value, (surnameRef.current!).value,
                 Number((ageRef.current!).value), (groupNameRef.current!).value, (hobbiesRef.current!).value.split(","),Number((gpaRef.current!).value));
 
-             console.log(student);
+             
+                const peopleData = [...people];
+
+                peopleData.push(student);
+
+                setPeople(peopleData);
+                
 
              (groupNameRef.current!).value = '';
              (gpaRef.current!).value = '';
@@ -58,7 +65,11 @@ const Form = () => {
             let employee: Employee = new Employee((nameRef.current!).value, (surnameRef.current!).value,
                 Number((ageRef.current!).value), Number((salaryRef.current!).value), (skillsRef.current!).value.split(","),positionEnumValue);
 
-             console.log(employee);
+                const peopleData = [...people];
+
+                peopleData.push(employee);
+
+                setPeople(peopleData);
 
              (salaryRef.current!).value = '';
              (skillsRef.current!).value = '';
@@ -115,9 +126,7 @@ const Form = () => {
 
             <Flex marginTop={"10px"}>
 
-                <ListItemComponent>
-
-                </ListItemComponent>
+                <ListComponent people={people} />
 
             </Flex>
 
