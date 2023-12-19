@@ -1,4 +1,5 @@
 import { Box, Button, Container, Flex, Heading, Input, Stack } from '@chakra-ui/react'
+// @ts-ignore
 import React, { useEffect, useRef, useState } from 'react'
 import TodoItem from './TodoItem'
 import Todo from '../models/Todo'

@@ -1,4 +1,5 @@
 import { Button, Flex, Input } from '@chakra-ui/react'
+// @ts-ignore
 import React, { useRef, useState } from 'react'
 import { Text } from '@chakra-ui/react'
 import Todo from '../models/Todo'
