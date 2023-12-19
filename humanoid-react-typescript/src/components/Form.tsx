@@ -31,7 +31,8 @@ const Form = () => {
 
         if (option == 'student') {
 
-            let student: Student = new Student((nameRef.current!).value, (surnameRef.current!).value,
+            try {
+                let student: Student = new Student((nameRef.current!).value, (surnameRef.current!).value,
                 Number((ageRef.current!).value), (groupNameRef.current!).value, (hobbiesRef.current!).value.split(","), Number((gpaRef.current!).value));
 
 
@@ -40,8 +41,10 @@ const Form = () => {
             peopleData.push(student);
 
             setPeople(peopleData);
-
-
+            } catch (error) {
+                alert(error);
+            }
+            
             (groupNameRef.current!).value = '';
             (gpaRef.current!).value = '';
             (hobbiesRef.current!).value = '';

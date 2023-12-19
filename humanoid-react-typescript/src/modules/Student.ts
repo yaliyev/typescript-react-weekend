@@ -28,7 +28,11 @@ export default class Student extends Human implements IStudent<string[]>{
         super(name, surname, age);
         this.groupName = groupName;
         this.hobbies = hobbies;
-        this._GPA = _GPA;
+        if(_GPA > 0 && _GPA <= 100 ){
+            this._GPA = _GPA;
+        }else{
+            throw new Error("GPA format is incorrect");
+        }
     }
 
     hasPassed(): boolean{
