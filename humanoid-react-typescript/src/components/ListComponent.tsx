@@ -1,4 +1,5 @@
 import { List, ListItem } from '@chakra-ui/react'
+// @ts-ignore 
 import React, { Children } from 'react'
 import Human from '../modules/Human'
 import Student from '../modules/Student'

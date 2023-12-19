@@ -1,4 +1,5 @@
-import { Box, Center, Container, Flex, Input, Select, Text } from '@chakra-ui/react'
+import { Container, Flex, Input, Select} from '@chakra-ui/react'
+// @ts-ignore 
 import React, { useRef, useState } from 'react'
 import { Button } from '@chakra-ui/react'
 import ListComponent from './ListComponent'
